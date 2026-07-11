@@ -203,17 +203,22 @@
                     <p class="detail-val">Bride's Home</p>
                 </div>
 
-                <!-- Calendar Buttons -->
-                <div class="calendar-buttons-wrap">
-                    <button class="calendar-btn" id="google-cal-btn" aria-label="Add to Google Calendar">
-                        <i class="fa-regular fa-calendar-plus"></i> Google Calendar
+                <!-- Add to Calendar Dropdown -->
+                <div class="calendar-dropdown-wrap">
+                    <button class="calendar-btn" id="add-to-cal-btn" aria-expanded="false" aria-haspopup="true" aria-label="Add to Calendar options">
+                        <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
                     </button>
-                    <button class="calendar-btn" id="ics-cal-btn" aria-label="Add to Apple Calendar">
-                        <i class="fa-regular fa-calendar-plus"></i> Apple / .ics
-                    </button>
-                    <button class="calendar-btn" id="outlook-cal-btn" aria-label="Add to Outlook">
-                        <i class="fa-regular fa-calendar-plus"></i> Outlook
-                    </button>
+                    <div class="calendar-dropdown-menu" id="calendar-dropdown-menu">
+                        <button class="dropdown-item" id="google-cal-btn" aria-label="Add to Google Calendar">
+                            <i class="fa-brands fa-google"></i> Google Calendar
+                        </button>
+                        <button class="dropdown-item" id="ics-cal-btn" aria-label="Add to Apple Calendar">
+                            <i class="fa-brands fa-apple"></i> Apple Calendar (.ics)
+                        </button>
+                        <button class="dropdown-item" id="outlook-cal-btn" aria-label="Add to Outlook Calendar">
+                            <i class="fa-brands fa-windows"></i> Outlook Web
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>

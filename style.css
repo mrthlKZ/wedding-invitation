@@ -622,6 +622,7 @@ section {
     border-top: 1px solid var(--color-cream-dark);
     border-bottom: 1px solid var(--color-cream-dark);
     position: relative;
+    z-index: 5; /* Higher stack than subsequent sections to display dropdown on top */
 }
 
 .details-section-title {
@@ -706,6 +707,73 @@ section {
 
 .calendar-btn i {
     font-size: 1rem;
+}
+
+/* Calendar Dropdown Container */
+.calendar-dropdown-wrap {
+    position: relative;
+    display: inline-block;
+    margin-top: 25px;
+}
+
+/* Dropdown Menu styling */
+.calendar-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: 230px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 25px rgba(74, 3, 16, 0.08), 0 5px 15px rgba(212, 175, 55, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+    padding: 8px 0;
+}
+
+/* Show active dropdown class */
+.calendar-dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Dropdown individual option item */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 20px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 550;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.dropdown-item i {
+    font-size: 1.1rem;
+    color: var(--color-gold-dark);
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-cream);
+    color: var(--color-maroon);
+}
+
+.dropdown-item:active {
+    background-color: var(--color-cream-dark);
 }
 
 .pre-title {
@@ -1075,12 +1143,15 @@ section {
    ========================================== */
 
 .hero-section,
-.wedding-details-section,
 .countdown-section,
 .venue-section,
 .footer {
     position: relative;
     overflow: hidden; /* Prevent background images from overflowing */
+}
+
+.wedding-details-section {
+    overflow: visible; /* Allow calendar dropdown menu to extend beyond bounds */
 }
 
 /* Ensure all children display above the background image */

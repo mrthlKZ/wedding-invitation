@@ -189,6 +189,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const googleCalBtn = document.getElementById("google-cal-btn");
     const icsCalBtn = document.getElementById("ics-cal-btn");
     const outlookCalBtn = document.getElementById("outlook-cal-btn");
+    const addToCalBtn = document.getElementById("add-to-cal-btn");
+    const calendarDropdownMenu = document.getElementById("calendar-dropdown-menu");
+
+    if (addToCalBtn && calendarDropdownMenu) {
+        addToCalBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isExpanded = addToCalBtn.getAttribute("aria-expanded") === "true";
+            addToCalBtn.setAttribute("aria-expanded", !isExpanded);
+            calendarDropdownMenu.classList.toggle("show");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", () => {
+            addToCalBtn.setAttribute("aria-expanded", "false");
+            calendarDropdownMenu.classList.remove("show");
+        });
+    }
 
     if (googleCalBtn) {
         googleCalBtn.addEventListener("click", () => {
