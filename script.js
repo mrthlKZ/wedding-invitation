@@ -16,29 +16,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const petalContainer = document.getElementById("petal-container");
 
 
-    // Dynamic QR Target Link
-    const mapsLinkEl = document.getElementById("nav-maps-link");
-    const mapsUrl = mapsLinkEl ? mapsLinkEl.getAttribute("href") : "https://maps.google.com/?q=Velimukku,+Malappuram,+Kerala";
 
     // ----------------------------------------------------
     // 2. Ripple Effect & Page Transition
     // ----------------------------------------------------
     if (viewInviteBtn) {
-        viewInviteBtn.addEventListener("click", function(e) {
+        viewInviteBtn.addEventListener("click", function (e) {
             // Create Ripple Effect
             const ripple = document.createElement("span");
             ripple.classList.add("btn-ripple");
-            
+
             // Calculate coordinates relative to the button
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             ripple.style.left = `${x}px`;
             ripple.style.top = `${y}px`;
-            
+
             this.appendChild(ripple);
-            
+
             // Remove ripple after animation completes
             setTimeout(() => {
                 ripple.remove();
@@ -50,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Transition from Page 1 (Welcome Screen) to Page 2 (Details)
             welcomeScreen.classList.add("slide-up");
             body.classList.remove("no-scroll");
-            
+
             if (invitationDetails) {
                 invitationDetails.classList.remove("hidden");
                 // Small delay to allow CSS transitions to trigger
@@ -129,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Wedding has happened / is happening today
             if (countdownWrapper) countdownWrapper.classList.add("hidden");
             if (weddingDayMessage) weddingDayMessage.classList.remove("hidden");
-            
+
             if (daysEl) daysEl.innerText = "00";
             if (hoursEl) hoursEl.innerText = "00";
             if (minutesEl) minutesEl.innerText = "00";
@@ -154,34 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ----------------------------------------------------
-    // 5. Dynamic QR Code Generation
-    // ----------------------------------------------------
-    const qrContainer = document.getElementById("qrcode");
-    const qrFallback = document.getElementById("qrcode-fallback");
 
-    if (qrContainer) {
-        try {
-            // Check if QRCode library is loaded
-            if (typeof QRCode !== "undefined") {
-                new QRCode(qrContainer, {
-                    text: mapsUrl,
-                    width: 170,
-                    height: 170,
-                    colorDark: "#6D071A",  // Matches maroon color
-                    colorLight: "#FFFFFF", // Standard high contrast background
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-            } else {
-                throw new Error("QRCode.js CDN not loaded");
-            }
-        } catch (error) {
-            console.warn("QR code generation error, showing fallback: ", error);
-            if (qrFallback) {
-                qrFallback.classList.remove("hidden");
-            }
-        }
-    }
 
     // ----------------------------------------------------
     // 5b. Add to Calendar Functionality
@@ -231,6 +201,44 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.removeChild(link);
         });
     }
+    // ----------------------------------------------------
+    // 5c. Dynamic Photo Album Gallery
+    // ----------------------------------------------------
+    const albumImages = [
+        "image-1.jpeg",
+        "image-2.jpeg",
+        "image-3.jpeg",
+        "image-4.jpeg",
+        "image-5.jpeg",
+        "image-6.jpeg",
+        "image-7.jpeg"
+    ];
+
+    const galleryGrid = document.querySelector(".gallery-grid");
+
+    if (galleryGrid) {
+        galleryGrid.innerHTML = ""; // Clear placeholders
+
+        albumImages.forEach((imgName, index) => {
+            const card = document.createElement("div");
+            card.classList.add("gallery-card");
+            
+            // Re-apply visual layout masonry spans
+            if (index === 0) {
+                card.classList.add("card-tall");
+            } else if (index === 6) {
+                card.classList.add("card-wide");
+            }
+
+            const img = document.createElement("img");
+            img.src = `assets/photo-album/${imgName}`;
+            img.alt = `Moments Photo ${index + 1}`;
+            img.loading = "lazy";
+
+            card.appendChild(img);
+            galleryGrid.appendChild(card);
+        });
+    }
 
     // ----------------------------------------------------
     // 6. Floating Flower Petals / Hearts Generator
@@ -268,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
         petal.style.width = `${size}px`;
         petal.style.height = `${size}px`;
         petal.style.animationDuration = `${duration}s`;
-        
+
         // Add random keyframe offsets via custom properties
         petal.style.setProperty("--start-rot", `${startRotation}deg`);
 
