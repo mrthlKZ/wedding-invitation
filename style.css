@@ -392,13 +392,50 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     outline: none;
     animation: fade-in-up 2.2s ease;
+    overflow: hidden; /* Keeps the shimmer sweep inside the capsule boundary */
+}
+
+/* Shimmer shine overlay sweep */
+.welcome-btn-capsule::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0) 75%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-30deg);
+    animation: button-shimmer-sweep 4s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes button-shimmer-sweep {
+    0% { left: -150%; }
+    30% { left: 150%; }
+    100% { left: 150%; }
 }
 
 .welcome-btn-capsule:hover {
     transform: translateY(-3px);
     background-color: var(--color-maroon);
-    box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 0 10px 25px rgba(74, 3, 16, 0.35);
+    animation: button-hover-glow 1.5s infinite alternate ease-in-out;
     color: var(--color-cream-dark);
+}
+
+@keyframes button-hover-glow {
+    0% {
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.35), 0 6px 20px rgba(74, 3, 16, 0.25);
+    }
+    100% {
+        box-shadow: 0 0 45px rgba(212, 175, 55, 0.75), 0 12px 30px rgba(74, 3, 16, 0.45);
+    }
 }
 
 .welcome-btn-capsule:active {
@@ -962,75 +999,44 @@ section {
 }
 
 /* ==========================================
-   GALLERY / OUR MOMENTS SECTION
+   DYNAMIC BACKGROUND IMAGES (LOW OPACITY)
    ========================================== */
 
-.gallery-section {
-    padding-top: 100px;
-    padding-bottom: 80px;
-    text-align: center;
-    border-bottom: 1px solid var(--color-cream-dark);
-}
-
-.gallery-section-title {
-    font-family: var(--font-cursive);
-    font-size: 4rem;
-    line-height: 1.2;
-    display: inline-block;
-    padding: 10px 20px;
-    margin: -10px -20px 5px -20px;
-    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-maroon-dark) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.gallery-section-subtitle {
-    font-family: var(--font-sub);
-    font-size: 1.25rem;
-    font-style: italic;
-    color: var(--color-gold-dark);
-    margin-bottom: 50px;
-    font-weight: 500;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 260px;
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.gallery-card {
+#welcome-screen,
+.invitation-details,
+.hero-section,
+.wedding-details-section,
+.countdown-section,
+.venue-section,
+.footer {
     position: relative;
-    border: 1px solid var(--color-gold-light);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    background-color: var(--color-white);
-    cursor: pointer;
+    overflow: hidden; /* Prevent background images from overflowing */
 }
 
-.gallery-card img {
+/* Ensure all children display above the background image */
+#welcome-screen .container,
+#welcome-screen .welcome-content,
+.invitation-details .container,
+.hero-section .container,
+.wedding-details-section .container,
+.countdown-section .container,
+.venue-section .container,
+.footer .container {
+    position: relative;
+    z-index: 2;
+}
+
+.section-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.gallery-card:hover img {
-    transform: scale(1.08);
-}
-
-/* Grid layout spanning */
-.card-tall {
-    grid-row: span 2;
-}
-
-.card-wide {
-    grid-column: span 2;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
 }
 
 
@@ -1328,27 +1334,6 @@ section {
         gap: 40px;
     }
 
-    .gallery-section {
-        padding-top: 60px;
-        padding-bottom: 50px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 240px;
-        gap: 16px;
-    }
-
-    .card-tall {
-        grid-row: span 1;
-    }
-
-    .card-wide {
-        grid-column: span 1;
-    }
-
-
-
     .guestbook-card {
         padding: 40px 20px;
     }
@@ -1431,17 +1416,6 @@ section {
     .venue-section {
         padding-top: 60px;
         padding-bottom: 50px;
-    }
-
-    .gallery-section {
-        padding-top: 50px;
-        padding-bottom: 40px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: 280px;
-        gap: 16px;
     }
 
     .music-control {

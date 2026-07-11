@@ -202,43 +202,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     // ----------------------------------------------------
-    // 5c. Dynamic Photo Album Gallery
+    // 5c. Dynamic Background Images (Low Opacity)
     // ----------------------------------------------------
     const albumImages = [
-        "image-1.jpeg",
-        "image-2.jpeg",
-        "image-3.jpeg",
-        "image-4.jpeg",
-        "image-5.jpeg",
-        "image-6.jpeg",
-        "image-7.jpeg"
+        { selector: "#welcome-screen", img: "image-6.jpeg", opacity: 0.25 },
+        { selector: ".invitation-details", img: "image-7.jpeg", opacity: 0.08 },
+        { selector: ".hero-section", img: "image-1.jpeg", opacity: 0.15 },
+        { selector: ".wedding-details-section", img: "image-2.jpeg", opacity: 0.15 },
+        { selector: ".countdown-section", img: "image-3.jpeg", opacity: 0.25 }
     ];
 
-    const galleryGrid = document.querySelector(".gallery-grid");
-
-    if (galleryGrid) {
-        galleryGrid.innerHTML = ""; // Clear placeholders
-
-        albumImages.forEach((imgName, index) => {
-            const card = document.createElement("div");
-            card.classList.add("gallery-card");
+    albumImages.forEach(cfg => {
+        const container = document.querySelector(cfg.selector);
+        if (container) {
+            // Create background element
+            const bgEl = document.createElement("div");
+            bgEl.classList.add("section-bg-image");
+            bgEl.style.backgroundImage = `url('assets/photo-album/${cfg.img}')`;
+            bgEl.style.opacity = cfg.opacity;
             
-            // Re-apply visual layout masonry spans
-            if (index === 0) {
-                card.classList.add("card-tall");
-            } else if (index === 6) {
-                card.classList.add("card-wide");
-            }
-
-            const img = document.createElement("img");
-            img.src = `assets/photo-album/${imgName}`;
-            img.alt = `Moments Photo ${index + 1}`;
-            img.loading = "lazy";
-
-            card.appendChild(img);
-            galleryGrid.appendChild(card);
-        });
-    }
+            // Prepend so it loads behind all text and interactive items
+            container.insertBefore(bgEl, container.firstChild);
+        }
+    });
 
     // ----------------------------------------------------
     // 6. Floating Flower Petals / Hearts Generator
