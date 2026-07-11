@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wedding Invitation - Join us in celebrating the union of Nishna & Jasanth on August 16, 2026. View details, venue location, countdown, and more.">
+    <meta name="keywords" content="Nishna, Jasanth, Wedding Invitation, Marriage, August 16 2026, Velimukku, Kadungathu Kundu">
+    <meta name="author" content="Nishna & Jasanth">
+    
+    <title>Wedding Invitation | Nishna & Jasanth</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="no-scroll">
+
+    <!-- Ambient Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-delicate-piano-461.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Audio Control Button -->
+    <button class="music-control" id="music-btn" aria-label="Play background music" title="Toggle Music">
+        <i class="fas fa-music"></i>
+        <div class="music-wave" id="music-wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </button>
+
+    <!-- Floating Hearts/Petals Container -->
+    <div id="petal-container" class="petal-container" aria-hidden="true"></div>
+
+    <!-- ================= PAGE 1: WELCOME SCREEN ================= -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-overlay"></div>
+
+        <div class="welcome-content">
+            <!-- Top Gold Floral Ornament SVG -->
+            <div class="welcome-ornament">
+                <svg width="280" height="60" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Left Scroll -->
+                    <path d="M130 30 C110 30, 95 15, 80 20 C65 25, 55 45, 30 35 C15 30, 10 20, 5 25" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Right Scroll -->
+                    <path d="M150 30 C170 30, 185 15, 200 20 C215 25, 225 45, 250 35 C265 30, 270 20, 275 25" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Left Leaves -->
+                    <path d="M90 20 C95 12, 105 15, 105 20 C98 22, 92 22, 90 20 Z" fill="#D4AF37" opacity="0.8"/>
+                    <path d="M75 25 C70 18, 62 25, 68 30 C74 30, 76 27, 75 25 Z" fill="#D4AF37" opacity="0.8"/>
+                    <path d="M50 34 C43 28, 38 35, 43 40 C48 40, 50 37, 50 34 Z" fill="#D4AF37" opacity="0.8"/>
+                    <!-- Right Leaves -->
+                    <path d="M190 20 C185 12, 175 15, 175 20 C182 22, 188 22, 190 20 Z" fill="#D4AF37" opacity="0.8"/>
+                    <path d="M205 25 C210 18, 218 25, 212 30 C206 30, 204 27, 205 25 Z" fill="#D4AF37" opacity="0.8"/>
+                    <path d="M230 34 C237 28, 242 35, 237 40 C232 40, 230 37, 230 34 Z" fill="#D4AF37" opacity="0.8"/>
+                    <!-- Center Flowers -->
+                    <g transform="translate(125, 15)">
+                        <circle cx="15" cy="15" r="5" fill="#D4AF37"/>
+                        <circle cx="15" cy="6" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="15" cy="24" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="6" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="24" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                    </g>
+                    <!-- Left side flower -->
+                    <g transform="translate(100, 18) scale(0.7)">
+                        <circle cx="15" cy="15" r="5" fill="#D4AF37"/>
+                        <circle cx="15" cy="7" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="15" cy="23" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="7" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="23" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                    </g>
+                    <!-- Right side flower -->
+                    <g transform="translate(155, 18) scale(0.7)">
+                        <circle cx="15" cy="15" r="5" fill="#D4AF37"/>
+                        <circle cx="15" cy="7" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="15" cy="23" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="7" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="23" cy="15" r="4" fill="#D4AF37" opacity="0.7"/>
+                    </g>
+                    <!-- Sprig Details -->
+                    <circle cx="120" cy="10" r="1.5" fill="#D4AF37"/>
+                    <circle cx="160" cy="10" r="1.5" fill="#D4AF37"/>
+                    <circle cx="85" cy="35" r="1.5" fill="#D4AF37"/>
+                    <circle cx="195" cy="35" r="1.5" fill="#D4AF37"/>
+                </svg>
+            </div>
+            
+            <p class="welcome-names-spaced">Nishna & Jasanth</p>
+            
+            <h1 class="welcome-title-cursive">Wedding Invitation</h1>
+
+            <!-- Romantic Quote -->
+            <blockquote class="welcome-quote">
+                “Two hearts, one promise, a lifetime together.”
+            </blockquote>
+
+            <!-- Diamond Divider -->
+            <div class="welcome-divider-wrap">
+                <span class="line"></span>
+                <span class="diamond">✦</span>
+                <span class="line"></span>
+            </div>
+
+            <!-- Capsule Button -->
+            <button id="view-invite-btn" class="welcome-btn-capsule" aria-label="View Wedding Invitation">
+                VIEW INVITATION
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= PAGE 2: INVITATION DETAILS ================= -->
+    <div id="invitation-details" class="invitation-details hidden">
+        
+        <!-- HEADER / HERO SECTION -->
+        <header class="hero-section text-center scroll-reveal">
+            <div class="container">
+                <p class="pre-title">Together with their Families</p>
+                
+                <div class="couple-details-wrap">
+                    <!-- Bride Details -->
+                    <div class="person-details bride-details">
+                        <span class="label-gold">Bride</span>
+                        <h2 class="person-name">Nishna</h2>
+                        <p class="person-address">Kalathingal House</p>
+                        <p class="person-address">Velimukku</p>
+                    </div>
+                    
+                    <!-- Center Ampersand -->
+                    <div class="center-ampersand">&</div>
+                    
+                    <!-- Groom Details -->
+                    <div class="person-details groom-details">
+                        <span class="label-gold">Groom</span>
+                        <h2 class="person-name">Jasanth</h2>
+                        <p class="person-address">Kunnath House</p>
+                        <p class="person-address">Kadungathu Kundu</p>
+                    </div>
+                </div>
+
+                <!-- Gold Scroll Separator -->
+                <div class="hero-ornament">
+                    <svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M100 20 C85 20, 75 10, 65 15 C55 20, 48 30, 30 25 M100 20 C115 20, 125 10, 135 15 C145 20, 152 30, 170 25" stroke="#D4AF37" stroke-width="1" stroke-linecap="round"/>
+                        <circle cx="100" cy="20" r="2.5" fill="#D4AF37"/>
+                        <circle cx="85" cy="15" r="1.5" fill="#D4AF37"/>
+                        <circle cx="115" cy="15" r="1.5" fill="#D4AF37"/>
+                        <path d="M92 18 C94 15, 98 17, 98 20 C95 21, 93 20, 92 18 Z" fill="#D4AF37"/>
+                        <path d="M108 18 C106 15, 102 17, 102 20 C105 21, 107 20, 108 18 Z" fill="#D4AF37"/>
+                    </svg>
+                </div>
+
+                <p class="joyful-invite">joyfully invite you to celebrate their wedding</p>
+                <h3 class="wedding-date-hero">16 August 2026</h3>
+            </div>
+        </header>
+
+        <!-- WEDDING DETAILS SECTION -->
+        <section class="wedding-details-section text-center scroll-reveal">
+            <div class="container">
+                <h2 class="details-section-title">Wedding Details</h2>
+                
+                <!-- Date detail -->
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+                    <span class="detail-label">Wedding Date</span>
+                    <p class="detail-val">16 August 2026</p>
+                </div>
+                
+                <!-- Venue detail -->
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fa-solid fa-map-pin"></i>
+                    </div>
+                    <span class="detail-label">Venue</span>
+                    <p class="detail-val">Bride's Home</p>
+                </div>
+
+                <!-- Calendar Buttons -->
+                <div class="calendar-buttons-wrap">
+                    <button class="calendar-btn" id="google-cal-btn" aria-label="Add to Google Calendar">
+                        <i class="fa-regular fa-calendar-plus"></i> Google Calendar
+                    </button>
+                    <button class="calendar-btn" id="ics-cal-btn" aria-label="Add to Apple Calendar">
+                        <i class="fa-regular fa-calendar-plus"></i> Apple / .ics
+                    </button>
+                    <button class="calendar-btn" id="outlook-cal-btn" aria-label="Add to Outlook">
+                        <i class="fa-regular fa-calendar-plus"></i> Outlook
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- WEDDING DATE & TIMELINE & COUNTDOWN -->
+        <section class="countdown-section text-center scroll-reveal">
+            <div class="container relative-z">
+                <h2 class="countdown-title">Counting Down</h2>
+                <p class="countdown-subtitle">until we say “I do”</p>
+                
+                <!-- Live Countdown Timer -->
+                <div class="countdown-wrapper" aria-live="polite">
+                    <!-- Days Card -->
+                    <div class="countdown-box-outer">
+                        <div class="countdown-box">
+                            <span id="days" class="time-num">00</span>
+                        </div>
+                        <span class="time-label">Days</span>
+                    </div>
+
+                    <!-- Hours Card -->
+                    <div class="countdown-box-outer">
+                        <div class="countdown-box">
+                            <span id="hours" class="time-num">00</span>
+                        </div>
+                        <span class="time-label">Hours</span>
+                    </div>
+
+                    <!-- Minutes Card -->
+                    <div class="countdown-box-outer">
+                        <div class="countdown-box">
+                            <span id="minutes" class="time-num">00</span>
+                        </div>
+                        <span class="time-label">Minutes</span>
+                    </div>
+
+                    <!-- Seconds Card -->
+                    <div class="countdown-box-outer">
+                        <div class="countdown-box">
+                            <span id="seconds" class="time-num">00</span>
+                        </div>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                
+                <div id="wedding-day-message" class="wedding-day-msg hidden">
+                    <h3>❤️ Today is the Wedding Day ❤️</h3>
+                    <p>Wishing Nishna & Jasanth a lifetime of love and happiness!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VENUE LOCATION & DYNAMIC QR CODE -->
+        <section class="venue-section container scroll-reveal">
+            <h2 class="venue-section-title text-center">Venue Location</h2>
+            <p class="venue-section-subtitle text-center">Bride's Home • Kalathingal House, Velimukku</p>
+            
+            <div class="venue-grid">
+                <!-- Left: Navigation Info & CTA Button -->
+                <div class="venue-nav-info">
+                    <p class="nav-description">We can't wait to celebrate with you. Tap below for turn-by-turn directions.</p>
+                    <a href="https://maps.google.com/?q=Velimukku,+Malappuram,+Kerala" target="_blank" class="open-map-btn" id="nav-maps-link">
+                        <i class="fa-solid fa-location-dot"></i> OPEN LOCATION IN GOOGLE MAPS
+                    </a>
+                </div>
+
+                <!-- Right: QR Code Dynamic Card -->
+                <div class="qr-container-card">
+                    <span class="qr-card-label">Scan to Navigate</span>
+                    
+                    <div class="qr-scanner-box">
+                        <div id="qrcode" class="qrcode-target"></div>
+                        <!-- Fallback for browsers or script loading issue -->
+                        <div id="qrcode-fallback" class="qrcode-fallback-text hidden">
+                            <i class="fa-solid fa-map-marked-alt text-3xl gold-text"></i>
+                            <p>Map Link Ready</p>
+                        </div>
+                    </div>
+
+                    <p class="qr-card-footer-text">Scan this QR code with your phone to instantly open the venue in Google Maps.</p>
+                </div>
+            </div>
+
+            <!-- Symmetrical gold ribbon divider at the bottom of the section -->
+            <div class="venue-footer-divider">
+                <svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <line x1="5" y1="20" x2="95" y2="20" stroke="#D4AF37" stroke-width="1"/>
+                    <line x1="145" y1="20" x2="235" y2="20" stroke="#D4AF37" stroke-width="1"/>
+                    <g transform="translate(100, 5)">
+                        <circle cx="20" cy="15" r="3" fill="#D4AF37"/>
+                        <circle cx="20" cy="8" r="2.5" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="20" cy="22" r="2.5" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="13" cy="15" r="2.5" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="27" cy="15" r="2.5" fill="#D4AF37" opacity="0.7"/>
+                        <circle cx="8" cy="15" r="1.5" fill="#D4AF37" opacity="0.6"/>
+                        <circle cx="32" cy="15" r="1.5" fill="#D4AF37" opacity="0.6"/>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- GALLERY / OUR MOMENTS SECTION -->
+        <section class="gallery-section container scroll-reveal">
+            <h2 class="gallery-section-title text-center">Our Moments</h2>
+            <p class="gallery-section-subtitle text-center">A glimpse of our journey together</p>
+
+            <div class="gallery-grid">
+                <!-- Card 1: First Look (Tall - Spans 2 rows) -->
+                <div class="gallery-card card-tall">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.42.39 PM.jpeg" alt="First Look Moment" loading="lazy">
+                </div>
+
+                <!-- Card 2: The Proposal -->
+                <div class="gallery-card">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.43.29 PM.jpeg" alt="The Proposal Moment" loading="lazy">
+                </div>
+
+                <!-- Card 3: Engagement -->
+                <div class="gallery-card">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.44.50 PM.jpeg" alt="Engagement Moment" loading="lazy">
+                </div>
+
+                <!-- Card 4: Pre-Wedding Shoot -->
+                <div class="gallery-card">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.45.29 PM.jpeg" alt="Pre-Wedding Shoot Moment" loading="lazy">
+                </div>
+
+                <!-- Card 5: Haldi Ceremony -->
+                <div class="gallery-card">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.48.14 PM.jpeg" alt="Haldi Ceremony Moment" loading="lazy">
+                </div>
+
+                <!-- Card 6: Save the Date -->
+                <div class="gallery-card">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.49.34 PM.jpeg" alt="Save the Date Shoot" loading="lazy">
+                </div>
+
+                <!-- Card 7: Our Journey (Spans 2 columns) -->
+                <div class="gallery-card card-wide">
+                    <img src="assets/WhatsApp Image 2026-07-11 at 10.50.26 PM.jpeg" alt="Our Journey Together" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="footer-rings">
+                    <i class="fa-solid fa-ring ring-1"></i>
+                    <i class="fa-solid fa-ring ring-2"></i>
+                </div>
+                <h4 class="footer-names">Nishna & Jasanth</h4>
+                <p class="footer-date">August 16, 2026</p>
+                <div class="footer-divider"></div>
+                <p class="footer-note">"Thank you for being part of our journey and celebrating our union."</p>
+                <p class="footer-credits">&copy; 2026 Nishna & Jasanth. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- QRCode.js CDN (using unpkg or cdnjs) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nOMQLkYBtcI7YMcLkuzGB+5HsURMY146sIMdmToeCwh3WCOYUNCEUXGD5GgifQsJYWP3qZc6t1Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1480 @@
+/* ==========================================
+   CSS DESIGN SYSTEM & DESIGN TOKENS
+   ========================================== */
+
+:root {
+    /* Color Palette */
+    --color-gold-light: #F4E0A5;
+    --color-gold: #D4AF37;
+    --color-gold-dark: #AA820A;
+    --color-maroon-light: #8E1B31;
+    --color-maroon: #6D071A;
+    --color-maroon-dark: #4A0310;
+    --color-cream: #FFF8F0;
+    --color-cream-dark: #F8F0E5;
+    --color-dark: #1E1A17;
+    --color-text: #333333;
+    --color-text-muted: #666666;
+    --color-white: #ffffff;
+    
+    /* Typography */
+    --font-headings: 'Cinzel', serif;
+    --font-cursive: 'Great Vibes', cursive;
+    --font-sub: 'Cormorant Garamond', serif;
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Shadow Utilities */
+    --shadow-premium: 0 15px 35px rgba(109, 7, 26, 0.06), 0 5px 15px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.4);
+    --shadow-glow-maroon: 0 0 20px rgba(109, 7, 26, 0.25);
+    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.05);
+
+    /* Spacing & Borders */
+    --border-gold: 1px solid var(--color-gold);
+    --border-gold-double: 3px double var(--color-gold);
+    --radius-lg: 16px;
+    --radius-md: 8px;
+    --radius-sm: 4px;
+}
+
+/* ==========================================
+   GLOBAL RESET & BASE STYLING
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-cream);
+    color: var(--color-text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-maroon);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-maroon-dark);
+}
+
+/* Typography Shortcuts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
+    color: var(--color-maroon);
+    font-weight: 600;
+}
+
+/* Containers */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.relative-z {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   DECORATIVE ORNAMENTS & BG EFFECTS
+   ========================================== */
+
+/* Petal/Heart Fall Container */
+.petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.falling-petal {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    opacity: 0.8;
+    z-index: 99;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Gold SVG Divider */
+.gold-svg-divider {
+    width: 150px;
+    height: 30px;
+    margin: 15px auto;
+    display: block;
+}
+
+/* Gold Hearts / Icons */
+.gold-heart-icon {
+    color: var(--color-gold);
+    font-size: 1.5rem;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.gold-heart-icon::before,
+.gold-heart-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 60px;
+    height: 1px;
+    background: var(--color-gold);
+}
+
+.gold-heart-icon::before {
+    right: 100%;
+}
+
+.gold-heart-icon::after {
+    left: 100%;
+}
+
+/* ==========================================
+   AMBIENT MUSIC TOGGLE BUTTON
+   ========================================== */
+
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: var(--color-maroon);
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+    cursor: pointer;
+    box-shadow: var(--shadow-premium), var(--shadow-glow);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    background-color: var(--color-maroon-dark);
+}
+
+.music-control i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.music-control.playing i {
+    display: none;
+}
+
+.music-control.playing .music-wave {
+    display: flex;
+}
+
+.music-wave {
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    width: 24px;
+    height: 20px;
+    gap: 3px;
+}
+
+.music-wave span {
+    width: 3px;
+    background-color: var(--color-gold);
+    border-radius: 2px;
+    animation: sound-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.music-wave span:nth-child(1) { height: 60%; animation-delay: -0.4s; }
+.music-wave span:nth-child(2) { height: 100%; animation-delay: -0.2s; }
+.music-wave span:nth-child(3) { height: 40%; animation-delay: -0.6s; }
+
+@keyframes sound-bounce {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1.1); }
+}
+
+/* ==========================================
+   PAGE 1: WELCOME SCREEN STYLING
+   ========================================== */
+
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: radial-gradient(circle, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    overflow: hidden;
+}
+
+/* Slide Up Animation Class */
+.welcome-screen.slide-up {
+    transform: translateY(-100vh);
+}
+
+.welcome-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--color-gold-light) 0.5px, transparent 0.5px), radial-gradient(var(--color-gold-light) 0.5px, var(--color-cream) 0.5px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+/* Golden Decorative Frame - Removed as per minimalist design */
+
+.welcome-content {
+    position: relative;
+    max-width: 800px;
+    padding: 40px 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+.welcome-ornament {
+    margin-bottom: 20px;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.welcome-names-spaced {
+    font-family: var(--font-headings);
+    font-size: 1.15rem;
+    letter-spacing: 6px;
+    color: var(--color-gold-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    animation: fade-in-down 1.2s ease;
+}
+
+.welcome-title-cursive {
+    font-family: var(--font-cursive);
+    font-size: 5.5rem;
+    line-height: 1.3;
+    display: inline-block;
+    padding: 15px 35px;
+    margin: -15px -35px 20px -35px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-maroon-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fade-in-up 1.2s ease;
+}
+
+.welcome-quote {
+    font-family: var(--font-sub);
+    font-size: 1.45rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 15px auto 30px auto;
+    max-width: 600px;
+    line-height: 1.6;
+    padding: 0;
+    animation: fade-in 1.8s ease;
+}
+
+.welcome-divider-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    animation: fade-in 2s ease;
+}
+
+.welcome-divider-wrap .line {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-gold);
+    opacity: 0.7;
+}
+
+.welcome-divider-wrap .diamond {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    animation: pulse-glow-diamond 2.5s infinite alternate;
+}
+
+@keyframes pulse-glow-diamond {
+    0% { opacity: 0.6; filter: drop-shadow(0 0 1px rgba(212,175,55,0.2)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 4px rgba(212,175,55,0.7)); }
+}
+
+/* Premium Welcome Button Capsule */
+.welcome-btn-capsule {
+    position: relative;
+    display: inline-block;
+    padding: 16px 55px;
+    font-family: var(--font-headings);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-cream);
+    background: #4A0310;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), 0 6px 20px rgba(74, 3, 16, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+    animation: fade-in-up 2.2s ease;
+}
+
+.welcome-btn-capsule:hover {
+    transform: translateY(-3px);
+    background-color: var(--color-maroon);
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.4), 0 10px 25px rgba(74, 3, 16, 0.35);
+    color: var(--color-cream-dark);
+}
+
+.welcome-btn-capsule:active {
+    transform: translateY(-1px);
+}
+
+/* Keyframe Helper Animations for Welcome Screen */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   PAGE 2: INVITATION DETAILS SCREEN
+   ========================================== */
+
+.invitation-details {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    background: radial-gradient(circle at top, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+    position: relative;
+    width: 100%;
+}
+
+.invitation-details.fade-in {
+    opacity: 1;
+}
+
+/* Section Header & Common Section Styles */
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 50%, var(--color-maroon-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.section-title-gold {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.section-subtitle {
+    font-family: var(--font-sub);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-bottom: 40px;
+}
+
+/* Scroll Reveal animation triggers */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   HERO / BANNER SECTION
+   ========================================== */
+
+.hero-section {
+    padding: 100px 0 60px 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' fill='none' stroke='%23D4AF37' stroke-opacity='0.03'><circle cx='50' cy='50' r='45'/></svg>") repeat;
+}
+
+/* ==========================================
+   WEDDING DETAILS SECTION
+   ========================================== */
+
+.wedding-details-section {
+    padding: 80px 0;
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-cream-dark);
+    border-bottom: 1px solid var(--color-cream-dark);
+    position: relative;
+}
+
+.details-section-title {
+    font-family: var(--font-cursive);
+    font-size: 4rem;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 25px;
+    margin: -10px -25px 40px -25px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-maroon-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.detail-item {
+    margin-bottom: 35px;
+}
+
+.detail-icon {
+    font-size: 2.2rem;
+    color: var(--color-gold-dark);
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.15));
+}
+
+.detail-label {
+    font-family: var(--font-headings);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--color-gold-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.detail-val {
+    font-family: var(--font-sub);
+    font-size: 1.8rem;
+    color: var(--color-maroon);
+    font-weight: 600;
+}
+
+.calendar-buttons-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-maroon-dark);
+    background: linear-gradient(135deg, #E6C575 0%, #D4AF37 50%, #B8963E 100%);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.05);
+}
+
+.calendar-btn:active {
+    transform: translateY(0);
+}
+
+.calendar-btn i {
+    font-size: 1rem;
+}
+
+.pre-title {
+    font-family: var(--font-headings);
+    font-size: 0.95rem;
+    letter-spacing: 5px;
+    color: var(--color-gold-dark);
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.couple-details-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+}
+
+.person-details {
+    flex: 1;
+    text-align: center;
+}
+
+.label-gold {
+    font-family: var(--font-headings);
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--color-gold-dark);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.person-name {
+    font-family: var(--font-cursive);
+    font-size: 4.8rem;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: -10px -20px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.person-address {
+    font-family: var(--font-sub);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.center-ampersand {
+    font-family: var(--font-cursive);
+    font-size: 3.5rem;
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.hero-ornament {
+    margin: 30px auto 30px auto;
+}
+
+.joyful-invite {
+    font-family: var(--font-sub);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin-bottom: 25px;
+}
+
+.wedding-date-hero {
+    font-family: var(--font-headings);
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    color: var(--color-maroon);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+/* ==========================================
+   COUNTDOWN TIMER SECTION
+   ========================================== */
+
+.countdown-section {
+    background: #4A0310; /* Solid deep maroon */
+    color: var(--color-cream);
+    padding: 80px 0;
+    text-align: center;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.countdown-title {
+    font-family: var(--font-cursive);
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.countdown-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--color-cream-dark);
+    margin-bottom: 45px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.countdown-box-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.countdown-box {
+    background-color: var(--color-white);
+    width: 110px;
+    height: 110px;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.countdown-box:hover {
+    transform: translateY(-5px);
+}
+
+.time-num {
+    font-family: var(--font-cursive);
+    font-size: 3.8rem;
+    color: var(--color-maroon);
+    font-weight: 600;
+    line-height: 1;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: -10px -20px;
+}
+
+.time-label {
+    display: block;
+    font-family: var(--font-headings);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+.wedding-day-msg {
+    margin-top: 40px;
+    animation: pulse-glow-wedding 2s infinite alternate;
+}
+
+.wedding-day-msg h3 {
+    font-family: var(--font-headings);
+    color: var(--color-gold);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.wedding-day-msg p {
+    font-family: var(--font-sub);
+    font-size: 1.3rem;
+    font-style: italic;
+}
+
+@keyframes pulse-glow-wedding {
+    0% { transform: scale(0.98); opacity: 0.95; }
+    100% { transform: scale(1.02); opacity: 1; }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================
+   VENUE LOCATION & QR CODE
+   ========================================== */
+
+.venue-section {
+    text-align: center;
+    padding-top: 120px; /* Proper separation spacing from the countdown section */
+    padding-bottom: 100px;
+}
+
+.venue-section-title {
+    font-family: var(--font-cursive);
+    font-size: 4rem;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: -10px -20px 5px -20px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-maroon-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.venue-section-subtitle {
+    font-family: var(--font-sub);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-gold-dark);
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.venue-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.venue-nav-info {
+    flex: 1;
+    text-align: center;
+    max-width: 420px;
+}
+
+.nav-description {
+    font-family: var(--font-sub);
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.open-map-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #4A0310;
+    color: var(--color-cream);
+    box-shadow: 0 5px 20px rgba(74, 3, 16, 0.25);
+    border-radius: 30px;
+    font-family: var(--font-headings);
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.open-map-btn:hover {
+    background-color: var(--color-maroon);
+    box-shadow: 0 8px 25px rgba(74, 3, 16, 0.4);
+    transform: translateY(-3px);
+    color: var(--color-cream-dark);
+}
+
+.open-map-btn:active {
+    transform: translateY(-1px);
+}
+
+.qr-container-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium), 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 40px 35px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+.qr-container-card:hover {
+    transform: translateY(-5px);
+}
+
+.qr-card-label {
+    font-family: var(--font-headings);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: var(--color-maroon);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.qr-scanner-box {
+    width: 190px;
+    height: 190px;
+    padding: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: var(--radius-md);
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.qrcode-target {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qrcode-target img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.qrcode-fallback-text {
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.qr-card-footer-text {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.venue-footer-divider {
+    margin-top: 60px;
+    text-align: center;
+}
+
+/* ==========================================
+   GALLERY / OUR MOMENTS SECTION
+   ========================================== */
+
+.gallery-section {
+    padding-top: 100px;
+    padding-bottom: 80px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-cream-dark);
+}
+
+.gallery-section-title {
+    font-family: var(--font-cursive);
+    font-size: 4rem;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: -10px -20px 5px -20px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-maroon-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gallery-section-subtitle {
+    font-family: var(--font-sub);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-gold-dark);
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 260px;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.gallery-card {
+    position: relative;
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    background-color: var(--color-white);
+    cursor: pointer;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.gallery-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Grid layout spanning */
+.card-tall {
+    grid-row: span 2;
+}
+
+.card-wide {
+    grid-column: span 2;
+}
+
+
+
+/* ==========================================
+   INTERACTIVE GUESTBOOK / WISHES SECTION
+   ========================================== */
+
+.guestbook-section {
+    padding-bottom: 100px;
+}
+
+.guestbook-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-lg);
+    padding: 60px 40px;
+    box-shadow: var(--shadow-premium);
+    position: relative;
+}
+
+.guestbook-card .card-border {
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    border: 1px dashed rgba(212, 175, 55, 0.4);
+    border-radius: calc(var(--radius-lg) - 4px);
+    pointer-events: none;
+}
+
+.wishes-form {
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    position: relative;
+    z-index: 10;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-maroon);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: var(--radius-md);
+    background-color: var(--color-cream);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-maroon);
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px rgba(109, 7, 26, 0.1);
+}
+
+.submit-btn {
+    padding: 12px 35px;
+}
+
+/* Wishes Feed Styling */
+.wishes-display-container {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.wishes-heading {
+    font-family: var(--font-headings);
+    font-size: 1.3rem;
+    color: var(--color-maroon);
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--color-cream-dark);
+    padding-bottom: 10px;
+}
+
+.wishes-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom internal scroll for messages */
+.wishes-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.empty-wishes-msg {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-family: var(--font-sub);
+    font-size: 1.2rem;
+    padding: 30px 0;
+    font-style: italic;
+}
+
+.wish-item {
+    background-color: var(--color-cream-dark);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow-card);
+    animation: card-appear 0.5s ease forwards;
+}
+
+@keyframes card-appear {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.wish-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.wish-author {
+    font-weight: 600;
+    color: var(--color-maroon);
+    font-size: 0.95rem;
+}
+
+.wish-relation {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: rgba(109, 7, 26, 0.08);
+    color: var(--color-maroon);
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.wish-message {
+    font-family: var(--font-sub);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.wish-time {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 8px;
+}
+
+/* ==========================================
+   FOOTER SECTION
+   ========================================== */
+
+.footer {
+    padding: 80px 0 40px 0;
+    background: linear-gradient(to top, var(--color-cream-dark) 0%, var(--color-cream) 100%);
+    border-top: 1px solid var(--color-gold-light);
+}
+
+.footer-rings {
+    font-size: 2.2rem;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-rings .ring-2 {
+    margin-left: -15px;
+    opacity: 0.85;
+}
+
+.footer-names {
+    font-family: var(--font-cursive);
+    font-size: 3rem;
+    line-height: 1.4;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: -10px -20px 0 -20px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 60%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-date {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 25px;
+}
+
+.footer-divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-gold);
+    margin: 0 auto 25px auto;
+}
+
+.footer-note {
+    font-family: var(--font-sub);
+    font-size: 1.2rem;
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    color: var(--color-text);
+}
+
+.footer-credits {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================== */
+
+/* Up to 1024px (Small Desktops & Large Tablets) */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .venue-grid {
+        gap: 30px;
+    }
+}
+
+/* Up to 768px (Tablets & Landscape Mobile) */
+@media screen and (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .venue-section {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+
+    .welcome-title-cursive {
+        font-size: 3.8rem;
+    }
+
+    .couple-details-wrap {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .center-ampersand {
+        font-size: 2.5rem;
+        margin: 10px 0;
+    }
+
+    .person-name {
+        font-size: 3.8rem;
+        padding: 5px 15px;
+        margin: -5px -15px;
+    }
+
+    .venue-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .gallery-section {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 240px;
+        gap: 16px;
+    }
+
+    .card-tall {
+        grid-row: span 1;
+    }
+
+    .card-wide {
+        grid-column: span 1;
+    }
+
+
+
+    .guestbook-card {
+        padding: 40px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* Up to 425px (Portrait Mobile) */
+@media screen and (max-width: 425px) {
+    html {
+        font-size: 14px;
+    }
+
+    .gold-frame-outer {
+        top: 10px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .gold-frame-inner {
+        top: 5px;
+        bottom: 5px;
+        left: 5px;
+        right: 5px;
+    }
+
+    .welcome-content {
+        padding: 20px 10px;
+    }
+
+    .welcome-title-cursive {
+        font-size: 3rem;
+    }
+
+    .person-name {
+        font-size: 3rem;
+        padding: 4px 10px;
+        margin: -4px -10px;
+    }
+
+    .section-title,
+    .section-title-gold {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .countdown-wrapper {
+        gap: 15px;
+    }
+
+    .countdown-box {
+        width: 80px;
+        height: 80px;
+    }
+
+    .time-num {
+        font-size: 2.5rem;
+    }
+
+    .time-label {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .qr-container-card {
+        width: 100%;
+        max-width: 320px;
+        padding: 30px 20px;
+    }
+
+    .qr-scanner-box {
+        width: 170px;
+        height: 170px;
+    }
+
+    .venue-section {
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+
+    .gallery-section {
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+        gap: 16px;
+    }
+
+    .music-control {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Up to 320px (Very Small Mobile) */
+@media screen and (max-width: 320px) {
+    .welcome-title-cursive {
+        font-size: 2.4rem;
+    }
+    
+    .person-name {
+        font-size: 2.4rem;
+        padding: 2px 6px;
+        margin: -2px -6px;
+    }
+    
+    .countdown-box {
+        width: 70px;
+        height: 70px;
+    }
+
+    .time-num {
+        font-size: 2.1rem;
+    }
+
+    .qr-scanner-box {
+        width: 160px;
+        height: 160px;
+    }
+}
