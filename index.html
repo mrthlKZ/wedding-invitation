@@ -48,11 +48,16 @@
     <!-- Floating Hearts/Petals Container -->
     <div id="petal-container" class="petal-container" aria-hidden="true"></div>
 
+    <!-- Elegant "You are Invited" transition overlay -->
+    <div id="invite-transition-overlay" class="invite-transition-overlay hidden">
+        <p class="invite-transition-text">You are Invited</p>
+    </div>
+
     <!-- ================= PAGE 1: WELCOME SCREEN ================= -->
     <div id="welcome-screen" class="welcome-screen">
         <div class="welcome-overlay"></div>
 
-        <div class="welcome-content">
+        <div class="welcome-content" id="welcome-content">
             <!-- Top Gold Floral Ornament SVG -->
             <div class="welcome-ornament">
                 <svg width="280" height="60" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +132,7 @@
     </div>
 
     <!-- ================= PAGE 2: INVITATION DETAILS ================= -->
-    <div id="invitation-details" class="invitation-details hidden">
+    <div id="invitation-details" class="invitation-details">
 
         <!-- HEADER / HERO SECTION -->
         <header class="hero-section text-center scroll-reveal">

@@ -442,6 +442,66 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-1px);
 }
 
+.welcome-content {
+    transition: opacity 0.6s ease;
+}
+
+.welcome-content.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Elegant "You are Invited" Transition Overlay */
+.invite-transition-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
+    z-index: 9000; /* Behind welcome screen (9999) but in front of details (when details is at translateY(100vh)) */
+    text-align: center;
+    transition: opacity 1.0s cubic-bezier(0.25, 0.8, 0.25, 1), transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    pointer-events: none;
+    width: 90%;
+}
+
+.invite-transition-overlay.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.invite-transition-text {
+    font-family: var(--font-cursive);
+    font-size: 5rem;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 15px 30px;
+    margin: -15px -30px;
+    background: linear-gradient(135deg, var(--color-maroon) 0%, var(--color-maroon-light) 50%, var(--color-gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+    animation: text-pulse-glow 2s infinite alternate ease-in-out;
+}
+
+@keyframes text-pulse-glow {
+    0% { filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.25)); }
+    100% { filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.6)); }
+}
+
+@media screen and (max-width: 768px) {
+    .invite-transition-text {
+        font-size: 3.8rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .invite-transition-text {
+        font-size: 3rem;
+    }
+}
+
 /* Keyframe Helper Animations for Welcome Screen */
 @keyframes fade-in {
     from { opacity: 0; }
@@ -468,15 +528,27 @@ h1, h2, h3, h4, h5, h6 {
    ========================================== */
 
 .invitation-details {
-    opacity: 0;
-    transition: opacity 1.5s ease;
     background: radial-gradient(circle at top, var(--color-cream) 0%, var(--color-cream-dark) 100%);
-    position: relative;
+    position: fixed; /* Fixed viewport lock initially */
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100vh; /* Viewport height when locked */
+    overflow: hidden; /* Hide details scroll bar initially */
+    z-index: 9500; /* Stacks on top of the fixed background elements and overlay (9000) */
+    transform: translateY(100vh);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); /* slow smooth slide up */
 }
 
-.invitation-details.fade-in {
-    opacity: 1;
+.invitation-details.slide-in {
+    transform: translateY(0);
+}
+
+.invitation-details.active-scroll {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    transform: none; /* Clear translate when in normal flow */
 }
 
 /* Section Header & Common Section Styles */
@@ -1002,8 +1074,6 @@ section {
    DYNAMIC BACKGROUND IMAGES (LOW OPACITY)
    ========================================== */
 
-#welcome-screen,
-.invitation-details,
 .hero-section,
 .wedding-details-section,
 .countdown-section,

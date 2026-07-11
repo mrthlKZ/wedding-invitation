@@ -41,27 +41,57 @@ document.addEventListener("DOMContentLoaded", () => {
                 ripple.remove();
             }, 600);
 
-            // Play background music (avoids autoplay restrictions by triggering on user gesture)
+
+            // 1. Slide away the landing page immediately
+            welcomeScreen.classList.add("slide-up");
+
+            // 2. Play background music (avoids autoplay restrictions by triggering on user gesture)
             playAudio();
 
-            // Transition from Page 1 (Welcome Screen) to Page 2 (Details)
-            welcomeScreen.classList.add("slide-up");
-            body.classList.remove("no-scroll");
-
-            if (invitationDetails) {
-                invitationDetails.classList.remove("hidden");
-                // Small delay to allow CSS transitions to trigger
+            // 3. Show "You are Invited" overlay text as the landing page slides away
+            const transitionOverlay = document.getElementById("invite-transition-overlay");
+            if (transitionOverlay) {
                 setTimeout(() => {
-                    invitationDetails.classList.add("fade-in");
-                    // Trigger scroll reveals for top components immediately
-                    handleScrollReveal();
-                }, 100);
+                    transitionOverlay.classList.remove("hidden");
+                    void transitionOverlay.offsetWidth;
+                    transitionOverlay.classList.add("show");
+                }, 300);
             }
 
-            // Remove welcome screen from accessibility tree once slid away
+            // 4. Fade out the "You are Invited" overlay text
             setTimeout(() => {
+                if (transitionOverlay) {
+                    transitionOverlay.classList.remove("show");
+                }
+            }, 1600); // 300ms delay + 1300ms display hold
+
+            // 5. Slowly slide in the details page
+            setTimeout(() => {
+                if (invitationDetails) {
+                    // Synchronously activate first few scroll reveal elements to prevent asynchronous observer lag
+                    invitationDetails.querySelectorAll(".scroll-reveal").forEach((el, index) => {
+                        if (index < 2) {
+                            el.classList.add("active");
+                        }
+                    });
+
+                    invitationDetails.classList.add("slide-in");
+                    handleScrollReveal();
+                }
+            }, 2200); // 1600ms + 600ms text fade out duration
+
+            // 6. Unlock body scrolling, activate page scroll and clean up transition overlays
+            setTimeout(() => {
+                body.classList.remove("no-scroll");
                 welcomeScreen.style.display = "none";
-            }, 1200);
+                if (transitionOverlay) {
+                    transitionOverlay.style.display = "none";
+                }
+                // Convert details page from viewport-locked fixed state to normal document flow
+                if (invitationDetails) {
+                    invitationDetails.classList.add("active-scroll");
+                }
+            }, 3800); // 2200ms slide start + 1500ms slide duration + 100ms buffer
         });
     }
 
