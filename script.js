@@ -235,14 +235,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (googleCalBtn) {
         googleCalBtn.addEventListener("click", () => {
-            const googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Nishna+and+Jasanth&dates=20260816T040000Z/20260816T080000Z&details=You+are+cordially+invited+to+the+wedding+ceremony+of+Nishna+and+Jasanth.+Muhurtham:+9:30+AM+-+10:30+AM.&location=Bride%27s+Home,+Velimukku,+Kerala";
+            const googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+of+Jasanth+and+Nishna&dates=20260816T040000Z/20260816T080000Z&details=You+are+cordially+invited+to+the+wedding+ceremony+of+Jasanth+and+Nishna.+Muhurtham:+9:30+AM+-+10:30+AM.&location=Bride%27s+Home,+Velimukku,+Kerala";
             window.open(googleUrl, "_blank");
         });
     }
 
     if (outlookCalBtn) {
         outlookCalBtn.addEventListener("click", () => {
-            const outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Wedding+of+Nishna+and+Jasanth&startdt=2026-08-16T09:30:00&enddt=2026-08-16T13:30:00&body=You+are+cordially+invited+to+the+wedding+ceremony+of+Nishna+and+Jasanth.+Muhurtham:+9:30+AM+-+10:30+AM.&location=Bride%27s+Home,+Velimukku,+Kerala";
+            const outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Wedding+of+Jasanth+and+Nishna&startdt=2026-08-16T09:30:00&enddt=2026-08-16T13:30:00&body=You+are+cordially+invited+to+the+wedding+ceremony+of+Jasanth+and+Nishna.+Muhurtham:+9:30+AM+-+10:30+AM.&location=Bride%27s+Home,+Velimukku,+Kerala";
             window.open(outlookUrl, "_blank");
         });
     }
@@ -252,14 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const icsContent = [
                 "BEGIN:VCALENDAR",
                 "VERSION:2.0",
-                "PRODID:-//Nishna & Jasanth Wedding//NONSGML v1.0//EN",
+                "PRODID:-//Jasanth & Nishna Wedding//NONSGML v1.0//EN",
                 "BEGIN:VEVENT",
-                "UID:wedding-" + new Date().getTime() + "@nishna-jasanth.wedding",
+                "UID:wedding-" + new Date().getTime() + "@jasanth-nishna.wedding",
                 "DTSTAMP:" + new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
                 "DTSTART:20260816T040000Z", // 9:30 AM IST (UTC+5:30)
                 "DTEND:20260816T080000Z",   // 1:30 PM IST (UTC+5:30)
-                "SUMMARY:Wedding of Nishna & Jasanth",
-                "DESCRIPTION:Join us for the wedding ceremony of Nishna & Jasanth. Muhurtham: 09:30 AM - 10:30 AM.",
+                "SUMMARY:Wedding of Jasanth & Nishna",
+                "DESCRIPTION:Join us for the wedding ceremony of Jasanth & Nishna. Muhurtham: 09:30 AM - 10:30 AM.",
                 "LOCATION:Bride's Home, Velimukku, Malappuram, Kerala",
                 "END:VEVENT",
                 "END:VCALENDAR"
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8;" });
             const link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", "wedding-nishna-jasanth.ics");
+            link.setAttribute("download", "wedding-jasanth-nishna.ics");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
