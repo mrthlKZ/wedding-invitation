@@ -632,6 +632,16 @@ section {
     padding-bottom: 260px; /* Allocate space dynamically for the dropdown to render inside */
 }
 
+.reception-section {
+    padding: 80px 0;
+    background-color: var(--color-cream-dark);
+    border-top: 1px solid var(--color-cream-dark);
+    border-bottom: 1px solid var(--color-cream-dark);
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
 .details-section-title {
     font-family: var(--font-cursive);
     font-size: 4rem;
@@ -1152,13 +1162,11 @@ section {
 .hero-section,
 .countdown-section,
 .venue-section,
-.footer {
+.footer,
+.wedding-details-section,
+.reception-section {
     position: relative;
-    overflow: hidden; /* Prevent background images from overflowing */
-}
-
-.wedding-details-section {
-    overflow: visible; /* Allow calendar dropdown menu to extend beyond bounds */
+    overflow: hidden; /* Prevent background images and drawing flowers from overflowing */
 }
 
 /* Ensure all children display above the background image */
@@ -1167,6 +1175,7 @@ section {
 .invitation-details .container,
 .hero-section .container,
 .wedding-details-section .container,
+.reception-section .container,
 .countdown-section .container,
 .venue-section .container,
 .footer .container {

@@ -282,7 +282,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { selector: ".invitation-details", img: "image-7.jpeg", opacity: 0.08 },
         { selector: ".hero-section", img: "image-1.jpeg", opacity: 0.15 },
         { selector: ".wedding-details-section", img: "image-2.jpeg", opacity: 0.15 },
-        { selector: ".countdown-section", img: "image-3.jpeg", opacity: 0.25 }
+        { selector: ".countdown-section", img: "image-3.jpeg", opacity: 0.25 },
+        { selector: ".reception-section", img: "image-4.jpeg", opacity: 0.15 }
     ];
 
     albumImages.forEach(cfg => {
