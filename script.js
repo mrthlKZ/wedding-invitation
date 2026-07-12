@@ -126,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (musicBtn) {
-        musicBtn.addEventListener("click", () => {
+        musicBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the document-level gesture listener
             if (isPlaying) {
                 pauseAudio();
             } else {
@@ -134,6 +135,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // Attempt to play audio on initial load
+    playAudio();
+
+    // Bypass browser autoplay blocks by playing on first user gesture
+    const enableAudioOnGesture = () => {
+        if (!isPlaying) {
+            playAudio();
+        }
+        // Clean up listeners after first interaction
+        document.removeEventListener("click", enableAudioOnGesture);
+        document.removeEventListener("touchstart", enableAudioOnGesture);
+        document.removeEventListener("scroll", enableAudioOnGesture);
+    };
+
+    document.addEventListener("click", enableAudioOnGesture);
+    document.addEventListener("touchstart", enableAudioOnGesture);
+    document.addEventListener("scroll", enableAudioOnGesture);
 
     // ----------------------------------------------------
     // 4. Live Countdown Timer
@@ -191,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const outlookCalBtn = document.getElementById("outlook-cal-btn");
     const addToCalBtn = document.getElementById("add-to-cal-btn");
     const calendarDropdownMenu = document.getElementById("calendar-dropdown-menu");
+    const detailsSection = document.getElementById("details-section");
 
     if (addToCalBtn && calendarDropdownMenu) {
         addToCalBtn.addEventListener("click", (e) => {
@@ -198,12 +218,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const isExpanded = addToCalBtn.getAttribute("aria-expanded") === "true";
             addToCalBtn.setAttribute("aria-expanded", !isExpanded);
             calendarDropdownMenu.classList.toggle("show");
+            if (detailsSection) {
+                detailsSection.classList.toggle("dropdown-open");
+            }
         });
 
         // Close dropdown when clicking outside
         document.addEventListener("click", () => {
             addToCalBtn.setAttribute("aria-expanded", "false");
             calendarDropdownMenu.classList.remove("show");
+            if (detailsSection) {
+                detailsSection.classList.remove("dropdown-open");
+            }
         });
     }
 

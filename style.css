@@ -50,6 +50,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -547,7 +548,7 @@ h1, h2, h3, h4, h5, h6 {
 .invitation-details.active-scroll {
     position: relative;
     height: auto;
-    overflow: visible;
+    overflow-x: hidden; /* Prevent horizontal scrollbars across all details sections */
     transform: none; /* Clear translate when in normal flow */
 }
 
@@ -623,6 +624,12 @@ section {
     border-bottom: 1px solid var(--color-cream-dark);
     position: relative;
     z-index: 5; /* Higher stack than subsequent sections to display dropdown on top */
+    overflow: hidden; /* Prevent drawing flowers from overflowing horizontally */
+    transition: padding-bottom 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wedding-details-section.dropdown-open {
+    padding-bottom: 260px; /* Allocate space dynamically for the dropdown to render inside */
 }
 
 .details-section-title {
@@ -1565,6 +1572,32 @@ section {
         width: 45px;
         height: 45px;
     }
+
+    .open-map-btn {
+        padding: 12px 20px;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .calendar-btn {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .calendar-dropdown-wrap {
+        width: 100%;
+        max-width: 280px; /* Limit dropdown block width to look nicely centered */
+        box-sizing: border-box;
+    }
+
+    .calendar-dropdown-menu {
+        width: 100%;
+        min-width: 100%;
+    }
 }
 
 /* Up to 320px (Very Small Mobile) */
@@ -1603,7 +1636,7 @@ section {
     width: 120px;
     height: 120px;
     pointer-events: none;
-    opacity: 0.25; /* soft, subtle, non-intrusive watermark look */
+    opacity: 0.65; /* Increased opacity for clear visibility */
     z-index: 1;
 }
 
@@ -1690,7 +1723,7 @@ section {
     .drawing-flower-wrap {
         width: 90px;
         height: 90px;
-        opacity: 0.18;
+        opacity: 0.55; /* Increased opacity on tablet */
     }
     .flower-left-top { left: 8px; }
     .flower-right-bottom { right: 8px; }
@@ -1706,7 +1739,7 @@ section {
     .drawing-flower-wrap {
         width: 70px;
         height: 70px;
-        opacity: 0.12; /* extra faint on small viewports to prevent reading issues */
+        opacity: 0.45; /* Increased opacity on mobile */
     }
     .flower-left-top { left: 4px; }
     .flower-right-bottom { right: 4px; }
