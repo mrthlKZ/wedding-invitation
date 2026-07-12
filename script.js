@@ -235,14 +235,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (googleCalBtn) {
         googleCalBtn.addEventListener("click", () => {
-            const googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+of+Jasanth+and+Nishna&dates=20260816T103000Z/20260816T143000Z&details=You+are+cordially+invited+to+the+wedding+reception+of+Jasanth+and+Nishna.+Time:+4:00+PM+-+8:00+PM.&location=Breeze+Mahal+Auditorium,+Malappuram,+Kerala";
+            const googleUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+of+Jasanth+and+Nishna&dates=20260816T103000Z/20260816T143000Z&details=You+are+cordially+invited+to+the+wedding+reception+of+Jasanth+and+Nishna.+Time:+4:00+PM+-+8:00+PM.&location=Breeze+Mahal+Auditorium,+Kalpakanchery,+Kerala";
             window.open(googleUrl, "_blank");
         });
     }
 
     if (outlookCalBtn) {
         outlookCalBtn.addEventListener("click", () => {
-            const outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Wedding+Reception+of+Jasanth+and+Nishna&startdt=2026-08-16T16:00:00&enddt=2026-08-16T20:00:00&body=You+are+cordially+invited+to+the+wedding+reception+of+Jasanth+and+Nishna.+Time:+4:00+PM+-+8:00+PM.&location=Breeze+Mahal+Auditorium,+Malappuram,+Kerala";
+            const outlookUrl = "https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=Wedding+Reception+of+Jasanth+and+Nishna&startdt=2026-08-16T16:00:00&enddt=2026-08-16T20:00:00&body=You+are+cordially+invited+to+the+wedding+reception+of+Jasanth+and+Nishna.+Time:+4:00+PM+-+8:00+PM.&location=Breeze+Mahal+Auditorium,+Kalpakanchery,+Kerala";
             window.open(outlookUrl, "_blank");
         });
     }
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "DTEND:20260816T143000Z",   // 8:00 PM IST (UTC+5:30)
                 "SUMMARY:Wedding Reception of Jasanth & Nishna",
                 "DESCRIPTION:Join us for the wedding reception of Jasanth & Nishna. Time: 04:00 PM - 08:00 PM.",
-                "LOCATION:Breeze Mahal Auditorium, Malappuram, Kerala",
+                "LOCATION:Breeze Mahal Auditorium, Kalpakanchery, Kerala",
                 "END:VEVENT",
                 "END:VCALENDAR"
             ].join("\r\n");
